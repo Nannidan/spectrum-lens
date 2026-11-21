@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { CompareChart } from './components/CompareChart'
 import { LiveTelemetryPanel } from './components/LiveTelemetryPanel'
+import { NeuroChatAgent } from './components/NeuroChatAgent'
 import { AUTISM_DATA_POINTS } from './data/autismDimensions'
 import { fetchLiveAutismTelemetry } from './services/autismApis'
 import type {
@@ -283,6 +284,9 @@ export default function App() {
 
         {/* Interactive Compare & Contrast Timeline */}
         <CompareChart />
+
+        {/* Calm AI Trait-Reflection & Probability Agent */}
+        <NeuroChatAgent />
 
         {/* Interactive Search, Filter & Sort Toolbar */}
         <section

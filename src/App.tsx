@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Activity,
+  ArrowLeft,
   ArrowUpDown,
   CheckCircle2,
   ExternalLink,
@@ -165,10 +166,31 @@ export default function App() {
         <header className="soft-card rounded-2xl border p-5 sm:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  href="https://portfolio-hub-44jc.vercel.app/"
+                  className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors"
+                  style={{
+                    backgroundColor: 'var(--surface-alt)',
+                    borderColor: 'var(--border)',
+                    color: 'var(--ink)',
+                  }}
+                >
+                  <ArrowLeft className="h-3.5 w-3.5" style={{ color: 'var(--sage)' }} />
+                  <span>Portfolio</span>
+                </a>
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
-                  style={{ backgroundColor: 'var(--sage-soft)', color: 'var(--sage)' }}
+                  className="h-4 w-px"
+                  style={{ backgroundColor: 'var(--border)' }}
+                  aria-hidden="true"
+                />
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold"
+                  style={{
+                    backgroundColor: 'var(--sage-soft)',
+                    borderColor: 'var(--sage)',
+                    color: 'var(--sage)',
+                  }}
                 >
                   <Activity className="h-3.5 w-3.5" />
                   SPECTRUM // LENS

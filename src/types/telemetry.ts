@@ -24,6 +24,7 @@ export interface AutismDataPoint {
   summary: string
   contrastNote: string
   source: string
+  sourceUrl: string
   yearRange: string
 }
 

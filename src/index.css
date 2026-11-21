@@ -10,6 +10,7 @@
   --border: #dde3dc;
   --sage: #588674;
   --sage-soft: #e6efe9;
+  --sage-glow: rgba(88, 134, 116, 0.38);
   --slate-blue: #587b9e;
   --lavender-soft: #edeaf4;
   --lavender-ink: #5d5278;
@@ -27,6 +28,7 @@
   --border: #2f3a43;
   --sage: #7ea997;
   --sage-soft: #22312b;
+  --sage-glow: rgba(126, 169, 151, 0.45);
   --slate-blue: #7fa2c4;
   --lavender-soft: #2a2738;
   --lavender-ink: #c6bce0;
@@ -52,6 +54,19 @@ body {
 
 .soft-selected {
   border-color: var(--sage);
+  box-shadow: 0 0 16px -2px var(--sage-glow);
+}
+
+/* Soft sensory button press & active glow */
+button {
+  transition: box-shadow 160ms ease, transform 120ms ease, border-color 160ms ease;
+}
+
+button:active,
+button[aria-pressed="true"] {
+  border-color: var(--sage) !important;
+  box-shadow: 0 0 18px 2px var(--sage-glow) !important;
+  transform: scale(0.985);
 }
 
 .soft-skeleton {

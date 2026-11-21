@@ -15,6 +15,7 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
     contrastNote:
       'Contrast: Prevalence rose ~4.1x over two decades, largely tracking screening expansion and diagnostic catch-up rather than a sudden biological surge.',
     source: 'CDC ADDM Network (MMWR 2023)',
+    sourceUrl: 'https://www.cdc.gov/mmwr/volumes/72/ss/ss7202a1.htm',
     yearRange: '2000 – 2020',
   },
   {
@@ -31,6 +32,7 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
     contrastNote:
       'Contrast: While diagnosis rates quadrupled, adult services and lifespan support receive under 5% of total research dollars compared to pediatric/genetic studies.',
     source: 'NIH IACC Portfolio Analysis',
+    sourceUrl: 'https://iacc.hhs.gov/publications/portfolio-analysis/',
     yearRange: '2008 – 2023',
   },
   {
@@ -46,7 +48,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'DSM-5 merged Autistic Disorder, Asperger’s, and PDD-NOS into a single Autism Spectrum Disorder diagnosis and removed the ban on diagnosing ASD alongside ADHD.',
     contrastNote:
       'Contrast: Diagnostic substitution (shifting labels from intellectual disability or language delay to ASD) accounts for a substantial share of the 1990s–2010s rise.',
-    source: 'APA DSM-5 / Keyes et al.',
+    source: 'PubMed / Keyes et al. Cohort Study',
+    sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/22049205/',
     yearRange: '1994 – 2013+',
   },
   {
@@ -62,7 +65,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'Routine toddler developmental screening at well-child visits identifies traits years earlier than historical school-age referrals.',
     contrastNote:
       'Contrast: Earlier detection compresses multiple birth cohorts into earlier surveillance windows, temporarily amplifying apparent year-over-year incidence.',
-    source: 'American Academy of Pediatrics',
+    source: 'AAP Clinical Report (Pediatrics)',
+    sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/31843864/',
     yearRange: '2007 – 2024',
   },
   {
@@ -78,7 +82,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'Girls and women often camouflage social differences, leading to missed or misdiagnosed anxiety/eating-disorder labels under male-normed checklists.',
     contrastNote:
       'Contrast: Rising female diagnoses reflect improved clinician awareness of masking—not a new environmental trigger affecting one sex.',
-    source: 'CDC ADDM / Loomes et al.',
+    source: 'Loomes et al. Meta-Analysis (JAACAP)',
+    sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/28545751/',
     yearRange: '2012 – 2024',
   },
   {
@@ -94,7 +99,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'For the first time in 2020, Black (29.3), Hispanic (31.6), and Asian (33.4) per 1,000 rates matched or exceeded White (24.3) rates due to improved Medicaid/IDEA access.',
     contrastNote:
       'Contrast: Much of the recent "spike" is actually overdue catch-up in historically underserved communities gaining evaluation access.',
-    source: 'CDC MMWR Surveillance 2023',
+    source: 'CDC Data & Statistics on ASD',
+    sourceUrl: 'https://www.cdc.gov/autism/data-research/index.html',
     yearRange: '2000 – 2020',
   },
   {
@@ -110,7 +116,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'Adults who grew up before DSM-5 or universal screening are increasingly seeking formal evaluations after recognizing lifelong sensory and executive-function traits.',
     contrastNote:
       'Contrast: Public awareness and destigmatization drive adult self-referral, whereas pediatric surveillance drives CDC prevalence headlines.',
-    source: 'JAMA Network Open / Epic EHR',
+    source: 'JAMA Network Open Adult ASD Trends',
+    sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/39476235/',
     yearRange: '2015 – 2024',
   },
   {
@@ -126,7 +133,8 @@ export const AUTISM_DATA_POINTS: AutismDataPoint[] = [
       'The 1998 Wakefield case series (n=12) was fully retracted in 2010 for data falsification; subsequent studies covering >1.8M children found zero MMR-autism link.',
     contrastNote:
       'Contrast: Misinformation thrives on temporal coincidence (vaccines occur at 12–18 mos, when developmental traits first become observable), while genetics explains ~80% of variance.',
-    source: 'NEJM / JAMA / Lancet Retraction',
+    source: 'Hviid et al. (Annals of Internal Medicine) & Bai et al. (JAMA)',
+    sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/30831578/',
     yearRange: '1998 – 2024',
   },
 ]

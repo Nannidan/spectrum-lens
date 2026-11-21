@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Activity,
-  AlertTriangle,
   ArrowUpDown,
   CheckCircle2,
+  ExternalLink,
   Moon,
   RefreshCw,
   RotateCcw,
@@ -66,7 +66,6 @@ export default function App() {
     readInitialParam('mode', 'light') === 'dark' ? 'dark' : 'light',
   )
   const [lowStim, setLowStim] = useState<boolean>(() => readInitialParam('stim', '1') === '1')
-  const [simulateError, setSimulateError] = useState(false)
 
   const [telemetryStatus, setTelemetryStatus] = useState<FetchStatus>('loading')
   const [telemetryData, setTelemetryData] = useState<LiveTelemetryData | null>(null)
@@ -94,32 +93,25 @@ export default function App() {
     window.history.replaceState(null, '', nextUrl)
   }, [query, category, evidenceFilter, sortBy, mode, lowStim])
 
-  const loadTelemetry = useCallback(
-    async (forceError = false, signal?: AbortSignal) => {
-      setTelemetryStatus('loading')
-      setTelemetryError(null)
-      try {
-        const result = await fetchLiveAutismTelemetry({
-          signal,
-          simulateError: forceError,
-        })
-        setTelemetryData(result)
-        setTelemetryStatus('success')
-      } catch (err) {
-        if (err instanceof DOMException && err.name === 'AbortError') return
-        setTelemetryError(err instanceof Error ? err.message : 'Unexpected API error')
-        setTelemetryStatus('error')
-      }
-    },
-    [],
-  )
+  const loadTelemetry = useCallback(async (signal?: AbortSignal) => {
+    setTelemetryStatus('loading')
+    setTelemetryError(null)
+    try {
+      const result = await fetchLiveAutismTelemetry({ signal })
+      setTelemetryData(result)
+      setTelemetryStatus('success')
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return
+      setTelemetryError(err instanceof Error ? err.message : 'Unexpected API error')
+      setTelemetryStatus('error')
+    }
+  }, [])
 
   useEffect(() => {
     const controller = new AbortController()
     let active = true
     fetchLiveAutismTelemetry({
       signal: controller.signal,
-      simulateError,
     })
       .then((result) => {
         if (!active) return
@@ -135,7 +127,7 @@ export default function App() {
       active = false
       controller.abort()
     }
-  }, [simulateError])
+  }, [])
 
   const filteredPoints = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -239,24 +231,8 @@ export default function App() {
 
               <button
                 type="button"
-                onClick={() => setSimulateError((prev) => !prev)}
-                className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium"
-                style={{
-                  backgroundColor: simulateError ? 'var(--caution-soft)' : 'var(--surface-alt)',
-                  borderColor: simulateError ? 'var(--caution)' : 'var(--border)',
-                  color: simulateError ? 'var(--caution)' : 'var(--ink)',
-                }}
-                title="Test API error banner and retry resilience"
-              >
-                <AlertTriangle className="h-3.5 w-3.5" />
-                <span>{simulateError ? 'Error Test: On' : 'Test Error State'}</span>
-              </button>
-
-              <button
-                type="button"
                 onClick={() => {
-                  setSimulateError(false)
-                  void loadTelemetry(false)
+                  void loadTelemetry()
                 }}
                 className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium"
                 style={{
@@ -277,8 +253,7 @@ export default function App() {
           data={telemetryData}
           errorMessage={telemetryError}
           onRetry={() => {
-            setSimulateError(false)
-            void loadTelemetry(false)
+            void loadTelemetry()
           }}
         />
 
@@ -361,6 +336,7 @@ export default function App() {
                 <button
                   key={cat}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => setCategory(cat)}
                   className="cursor-pointer rounded-full border px-3 py-1 text-xs font-medium"
                   style={{
@@ -475,14 +451,23 @@ export default function App() {
                   </div>
 
                   <footer
-                    className="mt-4 flex items-center justify-between border-t pt-3 text-[11px]"
+                    className="mt-4 flex items-center justify-between gap-2 border-t pt-3 text-[11px]"
                     style={{
                       borderColor: 'var(--border)',
                       color: 'var(--text-muted)',
                     }}
                   >
-                    <span>Source: {pt.source}</span>
-                    <span className="font-mono">{pt.yearRange}</span>
+                    <a
+                      href={pt.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-medium underline-offset-2 hover:underline"
+                      style={{ color: 'var(--sage)' }}
+                    >
+                      <span>Source: {pt.source}</span>
+                      <ExternalLink className="h-3 w-3 shrink-0" />
+                    </a>
+                    <span className="shrink-0 font-mono">{pt.yearRange}</span>
                   </footer>
                 </article>
               )
